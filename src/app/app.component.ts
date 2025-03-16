@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+// src/app/app.component.ts
+import { Component, OnInit } from '@angular/core';
+import { FcmService } from './fcm.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'frontend-and-firebase';
+export class AppComponent implements OnInit {
+
+  constructor(private fcmService: FcmService) {}
+
+  ngOnInit() {
+    // Solicitar permisos para recibir notificaciones
+    this.fcmService.requestPermission();
+
+    // Recibir las notificaciones en primer plano
+    this.fcmService.receiveMessage();
+  }
 }
