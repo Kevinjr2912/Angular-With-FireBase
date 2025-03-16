@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # FireBase
-src/environments/environment/
+src/environments/
