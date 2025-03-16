@@ -13,7 +13,7 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// Manejamos notificaciones en segundo plano (esto se usa aunque solo necesites primer plano)
+// Manejamos notificaciones en segundo plano (esto se usa aunque solo necesitemos primer plano)
 messaging.onBackgroundMessage((payload) => {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
   

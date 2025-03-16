@@ -6,19 +6,15 @@ import { AppComponent } from './app.component';
 import { initializeApp } from 'firebase/app';
 import { getMessaging } from 'firebase/messaging';
 import { firebaseConfig } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { 
+export class AppModule {
   constructor() {
     // Inicializamos Firebase
     const app = initializeApp(firebaseConfig);

@@ -9,6 +9,7 @@ import { firebaseConfig, vapid_key } from '../environments/environment';
 })
 export class FcmService {
   private messaging;
+  private token: string = ""
 
   constructor() {
     // Inicializamos Firebase
@@ -37,7 +38,8 @@ export class FcmService {
       .then((currentToken) => {
         if (currentToken) {
           console.log('Token FCM:', currentToken);
-          // Send the token to your server and update the UI if necessary
+          this.token = currentToken
+          console.log("Copy:", this.token)
         } else {
           console.log(
             'No registration token available. Request permission to generate one.'
@@ -47,6 +49,10 @@ export class FcmService {
       .catch((error) => {
         console.error('Error getting FCM token:', error);
       });
+  }
+
+  getTokenClient(): string {
+    return this.token
   }
 
   // Recibir mensajes cuando la aplicación está en primer plano
@@ -60,9 +66,7 @@ export class FcmService {
           payload.notification.body
         );
       } else {
-        console.error(
-          'Message Invalid'
-        );
+        console.error('Message Invalid');
       }
     });
   }
